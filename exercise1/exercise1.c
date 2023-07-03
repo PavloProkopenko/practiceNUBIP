@@ -6,15 +6,38 @@ int main()
 
     printf("Input 3 values:\n"); // Просимо користувача ввести три значення часу
     scanf("%d%d%d", &t1, &t2, &t3); // Зчитування значень з клавіатури
-    while (t1 > 10000 && t1 <= 0 || t2 > 10000 && t2 <= 0 || t3 > 10000 && t3 <= 0 ) // Перевірка всіх значень (чи задовольняють вони умови задачі)
+
+    if (t1 <= 0 || t1 > 10000)
     {
-        printf("!!!! Some of values program can't use (values must be greater than 0 and less than 10000) !!!!\n"); // Вказання причини, що саме не підходить в значеннях користувача
-        printf("*Just try to enter another values*\n"); // Текст підказка
-        printf("Input 3 values:\n");
-        scanf("%d%d%d", &t1, &t2, &t3);
+        printf("Invalid input! Time values must be between 1 and 10000.\n");
+
+        do {
+            printf("Input value for t1: ");
+            scanf("%d", &t1);
+        } while (t1 <= 0 || t1 > 10000);
+    }
+
+    if (t2 <= 0 || t2 > 10000)
+    {
+        printf("Invalid input! Time values must be between 1 and 10000.\n");
+
+        do {
+            printf("Input value for t2: ");
+            scanf("%d", &t2);
+        } while (t2 <= 0 || t2 > 10000);
     }
     
+    if (t3 <= 0 || t3 > 10000)
+    {
+        printf("Invalid input! Time values must be between 1 and 10000.\n");
 
-    float result = (float)(t1 + t2 + t3) / 3; // Обчислення результату за формулою, вказаною в теоретичних відомостях
+        do {
+            printf("Input value for t3: ");
+            scanf("%d", &t3);
+        } while (t3 <= 0 || t3 > 10000);
+    }
+    
+    float total_time = (t1 + t2 + t3) / 3; // Переведення значень в години за формолую, вказаною в теоретичних відомостях
+    float result = 1 / total_time;
     printf("Time for eating cake: %.2f hours", result); // Вивід результату на екран
 }
