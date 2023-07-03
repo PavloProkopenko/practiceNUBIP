@@ -16,5 +16,5 @@ int main()
     
 
     float result = (t1 + t2 + t3) / 3; // Обчислення результату за формулою, вказаною в теоретичних відомостях
-    printf("Time for eating cake: %.2f", result); // Вивід результату на екран
+    printf("Time for eating cake: %.2f hours", result); // Вивід результату на екран
 }
