@@ -18,14 +18,14 @@ int main()
     }
     
 
-    int *numbers =(int*)malloc(count_of_values * sizeof(int)); // виділення пам'яті для масиву значень, куди будуть записані числа користувача
+    int *numbers =(int*)malloc(count_of_values * sizeof(int)); // Виділення пам'яті для масиву значень, куди будуть записані числа користувача
 
-    printf("Input %d naturals numbers separated by space: ", count_of_values);
-    for (int i = 0; i < count_of_values; i++)
+    printf("Input %d naturals numbers separated by space: ", count_of_values); // Підсказка для користувача, яка запитує кількість чисел, яку користувач задав раніше
+    for (int i = 0; i < count_of_values; i++) // Заповнення масиву через цикл
     {
-        scanf("%d", &numbers[i]);
+        scanf("%d", &numbers[i]); // Сканування чисел, які введе користувач
 
-        if (numbers[i] <= 0) 
+        if (numbers[i] <= 0) // Перевірка, чи всі числа підходять до умови, якщо ні - програма завершує роботу
         {
             printf("Invalid input. Please enter positive natural numbers.\n");
             free(numbers);
@@ -33,20 +33,20 @@ int main()
         }
     }
     
-    int lcm = numbers[0];
+    int lcm = numbers[0]; // Ініціалізація НСК як перше число в масиві
 
-    for (int i = 1; i < count_of_values; i++)
+    for (int i = 1; i < count_of_values; i++) // Знаходження НСК через цикл (починається з 2 числа, бо перше ми вже ініціалізували, і будемо переписувати значення, якщо це потрібно)
     {
         lcm = findNSK(lcm, numbers[i]);
     }
     
-    printf("Least Common Multiple: %d\n", lcm);
+    printf("Least Common Multiple: %d\n", lcm); // Виведення на екран результату програми
 
     free(numbers);
     return 0;
 }
 
-int findNSD(int number_1, int number_2)
+int findNSD(int number_1, int number_2) // Знаходження найбільшого спільного дільника шляхом рекурсії, в якій базовою умовою є випадок, коли 2 число дорівнює 0
 {
     if (number_2 == 0)
     {
@@ -56,7 +56,7 @@ int findNSD(int number_1, int number_2)
     
 }
 
-int findNSK(int number_1, int number_2)
+int findNSK(int number_1, int number_2) // Знаходження найменшого спільного кратного
 {
     return (number_1 * number_2) / findNSD(number_1, number_2);
 }
