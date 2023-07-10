@@ -1,18 +1,37 @@
 #include <stdio.h>
 #include <math.h>
 
-unsigned minimum_steps(unsigned int x, unsigned int y);
+int minimum_steps(unsigned long x, unsigned long y);
 
 int main()
 {
-    int x, y;
+    unsigned long x, y;
 
     printf("Enter the value of x: ");
-    scanf("%d", &x);
+    scanf("%lu", &x);
+    while (x < 0 || x > pow(2, 31))
+    {
+        printf("!!!! Invalid value for x !!!!\n*Value must be greater or equal 0 and less than 2^31*\n");
+        printf("Enter the value of x: ");
+        scanf("%lu", &x);
+    }
+    
 
     printf("Enter the value of y: ");
-    scanf("%d", &y);
+    scanf("%lu", &y);
+    while (y < 0 || y > pow(2, 31))
+    {
+        printf("!!!! Invalid value for y !!!!\n*Value must be greater or equal 0 and less than 2^31*\n");
+        printf("Enter the value of y: ");
+        scanf("%lu", &y);
+    }
 
+    if (y < x)
+    {
+        printf("Value Y must be greater than value X");
+        return -1;
+    }
+    
     int steps = minimum_steps(x, y);
 
     printf("Minimum steps: %d\n", steps);
@@ -20,11 +39,11 @@ int main()
     return 0;
 }
 
-unsigned minimum_steps(unsigned int x, unsigned int y)
+int minimum_steps(unsigned long x, unsigned long y)
 {
-    unsigned int diff = y - x;
-    unsigned int root = (unsigned int)sqrt(1 + 8*diff);
-    unsigned int base = (root - 1) / 2;
+    unsigned long diff = y - x;
+    unsigned long root = (unsigned long)sqrt(1 + 8*diff);
+    unsigned long base = (root - 1) / 2;
 
     if (base * (base + 1) / 2 == diff) {
         return base;
@@ -34,4 +53,3 @@ unsigned minimum_steps(unsigned int x, unsigned int y)
         return base + 2;
     }
 }
-
