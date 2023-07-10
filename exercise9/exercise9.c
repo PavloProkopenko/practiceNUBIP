@@ -41,16 +41,34 @@ int main()
 
 int minimum_steps(unsigned long x, unsigned long y) // Реалізація функції (формули взяті з відкритих джерел)
 {
-    unsigned long diff = y - x;
-    unsigned long root = (unsigned long)sqrt(1 + 8*diff);
-    unsigned long base = (root - 1) / 2;
-
-    if (base * (base + 1) / 2 == diff) {
-        return base;
-    } else if (base * (base + 1) / 2 + base + 1 >= diff) {
-        return base + 1;
-    } else {
-        return base + 2;
+    // Перевірка випадку, коли x і y співпадають
+    if (x == y) {
+        return 0;
     }
+
+    // Ініціалізація лічильника кроків
+    int steps = 0;
+
+    // Визначення різниці між x і y
+    int diff = abs(y - x);
+
+    // Знаходження мінімальної кількості кроків
+    while (diff > 0) {
+        if (diff % 2 == 0) {
+            // Якщо різниця парна, виконуємо 2-крок
+            diff /= 2;
+        } else if (diff % 2 == 1 && diff != 1) {
+            // Якщо різниця непарна (крім 1), виконуємо 2-крок
+            diff = (diff + 1) / 2;
+        } else {
+            // Якщо різниця 1, виконуємо 1-крок
+            diff--;
+        }
+
+        // Збільшення лічильника кроків
+        steps++;
+    }
+
+    return steps;
 }
 
